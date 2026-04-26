@@ -1,17 +1,25 @@
+# ===========================
+# Application
+# ===========================
 spring.application.name=credit-limit
 server.port=8080
+
+# ===========================
+# Database
+# ===========================
 spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=creditlimitdb;encrypt=false;trustServerCertificate=true
 spring.datasource.username=sa
-spring.datasource.password=Admin@1234
+spring.datasource.password=
 spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
-spring.jpa.defer-datasource-initialization=true
-spring.sql.init.mode=always
 
-spring.jpa.database-platform=org.hibernate.dialect.SQLServerDialect
+# ===========================
+# JPA / Hibernate
+# ===========================
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
-credit.limit.vip.minimum=1000.00
-spring.mvc.problemdetails.enabled=true
-spring.sql.init.separator=GO
+# ===========================
+# Business Rules
+# ===========================
+credit.limit.vip.minimum=

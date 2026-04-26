@@ -1,6 +1,6 @@
 package com.api.creditlimit.controller;
 
-import com.api.creditlimit.domain.User;
+import com.api.creditlimit.domain.AppUser;
 import com.api.creditlimit.dto.CreditLimitHistoryResponse;
 import com.api.creditlimit.dto.CreditLimitResponse;
 import com.api.creditlimit.dto.UpdateCreditLimitRequest;
@@ -41,7 +41,7 @@ public class CreditLimitController {
     public UpdateCreditLimitResponse updateCreditLimit(
             @PathVariable Long id,
             @RequestBody @Valid UpdateCreditLimitRequest request,
-            @AuthenticationPrincipal User loggedUser) {
+            @AuthenticationPrincipal AppUser loggedUser) {
         return creditLimitService.updateCreditLimit(id, request, loggedUser);
     }
 
