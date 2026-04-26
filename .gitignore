@@ -39,3 +39,10 @@ out/
 *.jar
 *.war
 *.class
+
+### Environment ###
+.env
+*.env
+
+### Application Properties ###
+src/main/resources/application.properties

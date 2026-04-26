@@ -2,7 +2,7 @@ package com.api.creditlimit.service;
 
 import com.api.creditlimit.domain.CreditLimitHistory;
 import com.api.creditlimit.domain.Customer;
-import com.api.creditlimit.domain.User;
+import com.api.creditlimit.domain.AppUser;
 import com.api.creditlimit.dto.CreditLimitHistoryResponse;
 import com.api.creditlimit.dto.CreditLimitResponse;
 import com.api.creditlimit.dto.UpdateCreditLimitRequest;
@@ -44,7 +44,7 @@ public class CreditLimitService {
     @Transactional
     public UpdateCreditLimitResponse updateCreditLimit(Long customerId,
                                                        UpdateCreditLimitRequest request,
-                                                       User loggedUser) {
+                                                       AppUser loggedUser) {
         Customer customer = findCustomerById(customerId);
 
         validateNegativeLimit(request.newLimit());
@@ -84,7 +84,7 @@ public class CreditLimitService {
         }
     }
 
-    private void saveCreditLimitHistory(Customer customer, User loggedUser,
+    private void saveCreditLimitHistory(Customer customer, AppUser loggedUser,
                                         BigDecimal previousLimit, BigDecimal newLimit) {
         CreditLimitHistory history = CreditLimitHistory.builder()
                 .customer(customer)

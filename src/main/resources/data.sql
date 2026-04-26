@@ -1,14 +1,14 @@
 MERGE app_users AS target
-    USING (VALUES ('admin', '$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi', 'CREDIT_LIMIT_ADMIN'))
+    USING (VALUES ('admin', '$2a$10$0BtLUiUtoafN/1rcT7SrVuyfade5bA0NK4dlzMG0L8Eye9v.zwxkS', 'CREDIT_LIMIT_ADMIN'))
     AS source (username, password, role)
     ON target.username = source.username
     WHEN NOT MATCHED THEN
     INSERT (username, password, role)
     VALUES (source.username, source.password, source.role);
-GO
+
 
 MERGE app_users AS target
-USING (VALUES ('viewer', '$2a$10$Ek9YFyKG3HLMJb4GS3l5eutg0DPMxJgFJPCH7YFVsT3a0iR5NbKuS', 'CREDIT_LIMIT_VIEWER'))
+USING (VALUES ('viewer', '$2a$10$lo4gC2SlY7x2D0zGErP.0eNrmjdsxddn1/E1tSOPd1e0XzA/t82Cy', 'CREDIT_LIMIT_VIEWER'))
 AS source (username, password, role)
 ON target.username = source.username
 WHEN NOT MATCHED THEN
