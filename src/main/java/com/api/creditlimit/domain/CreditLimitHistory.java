@@ -14,7 +14,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.suitpay.creditlimit.domain.Customer;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
