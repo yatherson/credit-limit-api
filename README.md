@@ -129,10 +129,10 @@ Autenticacao: Qualquer usuario autenticado
 Resposta 200:
 ```json
 {
-    "customerId": 1,
-    "customerName": "John Doe",
-    "isVip": false,
-    "creditLimit": 5000.00
+  "customerId": 1,
+  "customerName": "John Doe",
+  "isVip": false,
+  "creditLimit": 5000.00
 }
 ```
 
@@ -149,17 +149,17 @@ Content-Type: application/json
 Requisição:
 ```json
 {
-    "newLimit": 8000.00
+  "newLimit": 8000.00
 }
 ```
 
 Resposta 200:
 ```json
 {
-    "customerId": 1,
-    "customerName": "John Doe",
-    "previousLimit": 5000.00,
-    "newLimit": 8000.00
+  "customerId": 1,
+  "customerName": "John Doe",
+  "previousLimit": 5000.00,
+  "newLimit": 8000.00
 }
 ```
 
@@ -175,19 +175,19 @@ Autenticacao: Qualquer usuario autenticado
 Resposta 200:
 ```json
 {
-    "content": [
-        {
-            "id": 1,
-            "previousLimit": 5000.00,
-            "newLimit": 8000.00,
-            "changedBy": "admin",
-            "changedAt": "2026-04-26T19:00:00"
-        }
-    ],
-    "totalElements": 1,
-    "totalPages": 1,
-    "size": 10,
-    "number": 0
+  "content": [
+    {
+      "id": 1,
+      "previousLimit": 5000.00,
+      "newLimit": 8000.00,
+      "changedBy": "admin",
+      "changedAt": "2026-04-26T19:00:00"
+    }
+  ],
+  "totalElements": 1,
+  "totalPages": 1,
+  "size": 10,
+  "number": 0
 }
 ```
 
@@ -210,12 +210,12 @@ Todos os erros seguem o padrão RFC 7807 Problem Details:
 Exemplo de resposta de erro:
 ```json
 {
-    "type": "/errors/vip-minimum-limit",
-    "title": "VIP Minimum Limit Violation",
-    "status": 422,
-    "detail": "VIP customers must have a minimum credit limit of 1000.00",
-    "instance": "/api/customers/2/credit-limit",
-    "timestamp": "2026-04-26T19:00:00Z"
+  "type": "/errors/vip-minimum-limit",
+  "title": "VIP Minimum Limit Violation",
+  "status": 422,
+  "detail": "VIP customers must have a minimum credit limit of 1000.00",
+  "instance": "/api/customers/2/credit-limit",
+  "timestamp": "2026-04-26T19:00:00Z"
 }
 ```
 
@@ -236,7 +236,7 @@ Exemplo de resposta de erro:
 1. Clone o repositório
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/yatherson/credit-limit-api.git
 cd credit-limit
 ```
 
@@ -248,6 +248,13 @@ cp src/main/resources/application.properties.example src/main/resources/applicat
 ```
 
 3. Preencha os valores nos arquivos `.env` e `application.properties`
+
+| Propriedade | Arquivo | Descricao |
+|-------------|---------|-----------|
+| `SA_PASSWORD` | `.env` | Senha do usuario `sa` do SQL Server |
+| `MSSQL_PID` | `.env` | Versao do SQL Server — use `Developer` |
+| `spring.datasource.password` | `application.properties` | Mesma senha definida em `SA_PASSWORD` |
+| `credit.limit.vip.minimum` | `application.properties` | Limite minimo para clientes VIP |
 
 ---
 
@@ -277,7 +284,14 @@ docker exec -it credit-limit-db /opt/mssql-tools18/bin/sqlcmd \
 .\gradlew.bat bootRun
 ```
 
-4. A API estará disponível em
+4. Ao subir, a aplicação executa automaticamente o `data.sql` que popula o banco com os dados iniciais
+
+| Tabela | Dados inseridos |
+|--------|----------------|
+| `app_users` | Usuarios `admin` e `viewer` com senhas BCrypt |
+| `customers` | Clientes `John Doe` e `Jane VIP` |
+
+5. A API estará disponível em
 
 ```
 http://localhost:8080
